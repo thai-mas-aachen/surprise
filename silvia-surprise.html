@@ -179,6 +179,40 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .baby-icons {
+            display: inline-flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .baby-face {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 3px solid #e17b77;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(225,123,119,0.3);
+            animation: bounce 2s infinite;
+            cursor: default;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
         }
         
         .baby-details {
@@ -287,6 +321,8 @@
         }
         
         
+        
+        
         @media (max-width: 768px) {
             .container {
                 margin: 0.5rem;
@@ -346,6 +382,13 @@
             .baby-announcement {
                 font-size: 1.8rem;
                 margin: 1.5rem 0;
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .baby-face {
+                width: 55px;
+                height: 55px;
             }
             
             .reveal-item {
@@ -406,6 +449,13 @@
             
             .baby-announcement {
                 font-size: 1.5rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .baby-face {
+                width: 50px;
+                height: 50px;
             }
             
             .mystery-card {
@@ -469,10 +519,18 @@
                 <div id="final-content" style="display: none;">
                     <img class="ultrasound-image" id="ultrasound" src="ultrasound.jpg" alt="Unser Baby!" onclick="enlargeImage(event)">
                     <div class="baby-announcement" style="margin-top: 2rem;">
-                        WIR BEKOMMEN EIN BABY! 👶💕
+                        <span>WIR BEKOMMEN EIN BABY!</span>
+                        <div class="baby-icons">
+                            <span>💕</span>
+                            <img class="baby-face" src="child1.png" alt="Kind 1">
+                            <img class="baby-face" src="child2.png" alt="Kind 2">
+                            <span>💕</span>
+                        </div>
                     </div>
+                    
+                    
                     <div style="margin-top: 2rem; font-size: 1.3rem;">
-                        Herzlichen Glückwunsch zum Geburtstag und willkommen in der Familie, Tante Silvia! 🥳👨‍👩‍👧‍👦
+                        Herzlichen Glückwunsch zum Geburtstag, Tante Silvia! 🥳
                     </div>
                 </div>
             </div>
