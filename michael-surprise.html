@@ -153,9 +153,11 @@
         }
         
         .answer-btn.wrong {
-            background: rgba(255,182,193,0.8);
-            border-color: #ffb6c1;
-            color: #8b4458;
+            background: #ff5252 !important;
+            border-color: #d32f2f !important;
+            color: white !important;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(255,82,82,0.4);
         }
         
         .progress {
@@ -601,11 +603,15 @@
             const question = questions[currentQuestion];
             const container = document.getElementById('question-container');
             
+            // Clear container completely and reset any lingering styles
+            container.innerHTML = '';
+            container.className = 'question-container';
+            
             container.innerHTML = `
                 <div class="question">${question.question}</div>
                 <div class="answers">
                     ${question.answers.map((answer, index) => 
-                        `<button class="answer-btn" onclick="selectAnswer(${index})">${answer}</button>`
+                        `<button class="answer-btn" onclick="selectAnswer(${index})" style="background: rgba(255,255,255,0.8); border: 2px solid rgba(66,165,245,0.3);">${answer}</button>`
                     ).join('')}
                 </div>
             `;

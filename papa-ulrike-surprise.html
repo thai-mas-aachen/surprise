@@ -13,8 +13,8 @@
         
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #ffecd1, #fcb69f);
-            color: #5d4e75;
+            background: linear-gradient(135deg, #e8f5e8, #a5d6a7);
+            color: #2e7d32;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -29,7 +29,7 @@
             background: rgba(255,255,255,0.95);
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 2px solid #f8b2b2;
+            border: 2px solid #81c784;
         }
         
         .welcome-section {
@@ -47,7 +47,7 @@
         h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #e17b77, #c06c84);
+            background: linear-gradient(45deg, #66bb6a, #388e3c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -57,7 +57,7 @@
         h2 {
             font-size: 2rem;
             margin-bottom: 2rem;
-            color: #c06c84;
+            color: #388e3c;
         }
         
         .birthday-text {
@@ -70,11 +70,11 @@
             font-size: 1.5rem;
             margin: 2rem 0;
             font-weight: bold;
-            color: #e17b77;
+            color: #66bb6a;
         }
         
         button {
-            background: linear-gradient(45deg, #f8b2b2, #e17b77);
+            background: linear-gradient(45deg, #81c784, #66bb6a);
             color: white;
             border: none;
             padding: 15px 40px;
@@ -83,27 +83,27 @@
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(225,123,119,0.3);
+            box-shadow: 0 5px 15px rgba(102,187,106,0.3);
         }
         
         button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(225,123,119,0.4);
+            box-shadow: 0 8px 25px rgba(102,187,106,0.4);
         }
         
         .question-container {
             margin: 2rem 0;
             padding: 2rem;
-            background: rgba(248,178,178,0.1);
+            background: rgba(129,199,132,0.1);
             border-radius: 15px;
-            border: 1px solid rgba(225,123,119,0.3);
+            border: 1px solid rgba(102,187,106,0.3);
         }
         
         .question {
             font-size: 1.4rem;
             margin-bottom: 2rem;
             font-weight: bold;
-            color: #c06c84;
+            color: #388e3c;
         }
         
         .answers {
@@ -114,8 +114,8 @@
         
         .answer-btn {
             background: rgba(255,255,255,0.8);
-            color: #5d4e75;
-            border: 2px solid rgba(225,123,119,0.3);
+            color: #2e7d32;
+            border: 2px solid rgba(102,187,106,0.3);
             padding: 15px 20px;
             font-size: 1rem;
             border-radius: 10px;
@@ -125,8 +125,8 @@
         }
         
         .answer-btn:hover {
-            background: rgba(248,178,178,0.2);
-            border-color: #f8b2b2;
+            background: rgba(129,199,132,0.2);
+            border-color: #81c784;
         }
         
         .answer-btn.correct {
@@ -153,15 +153,17 @@
         }
         
         .answer-btn.wrong {
-            background: rgba(255,182,193,0.8);
-            border-color: #ffb6c1;
-            color: #8b4458;
+            background: #ff5252 !important;
+            border-color: #d32f2f !important;
+            color: white !important;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(255,82,82,0.4);
         }
         
         .progress {
             margin: 2rem 0;
             font-size: 1.2rem;
-            color: #c06c84;
+            color: #388e3c;
         }
         
         .reveal-content {
@@ -174,7 +176,7 @@
             font-size: 2.5rem;
             font-weight: bold;
             margin: 2rem 0;
-            background: linear-gradient(45deg, #e17b77, #c06c84);
+            background: linear-gradient(45deg, #66bb6a, #388e3c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -196,9 +198,9 @@
             width: 70px;
             height: 70px;
             border-radius: 50%;
-            border: 3px solid #e17b77;
+            border: 3px solid #66bb6a;
             object-fit: cover;
-            box-shadow: 0 5px 15px rgba(225,123,119,0.3);
+            box-shadow: 0 5px 15px rgba(102,187,106,0.3);
             animation: bounce 2s infinite;
             cursor: default;
         }
@@ -220,7 +222,7 @@
             padding: 2rem;
             border-radius: 15px;
             margin: 2rem 0;
-            border: 2px solid #f8b2b2;
+            border: 2px solid #81c784;
         }
         
         .reveal-steps {
@@ -242,7 +244,7 @@
         
         .mystery-card {
             background: rgba(255,255,255,0.9);
-            border: 3px solid #f8b2b2;
+            border: 3px solid #81c784;
             border-radius: 20px;
             padding: 3rem;
             margin: 2rem 0;
@@ -254,12 +256,12 @@
         
         .mystery-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(248,178,178,0.3);
+            box-shadow: 0 10px 30px rgba(129,199,132,0.3);
         }
         
         .question-mark {
             font-size: 8rem;
-            color: #e17b77;
+            color: #66bb6a;
             transition: all 1s ease;
         }
         
@@ -306,7 +308,7 @@
             max-width: 80vw;
             max-height: 80vh;
             border-radius: 15px;
-            box-shadow: 0 20px 50px rgba(248,178,178,0.3);
+            box-shadow: 0 20px 50px rgba(129,199,132,0.3);
         }
         
         .final-reveal {
@@ -601,11 +603,15 @@
             const question = questions[currentQuestion];
             const container = document.getElementById('question-container');
             
+            // Clear container completely and reset any lingering styles
+            container.innerHTML = '';
+            container.className = 'question-container';
+            
             container.innerHTML = `
                 <div class="question">${question.question}</div>
                 <div class="answers">
                     ${question.answers.map((answer, index) => 
-                        `<button class="answer-btn" onclick="selectAnswer(${index})">${answer}</button>`
+                        `<button class="answer-btn" onclick="selectAnswer(${index})" style="background: rgba(255,255,255,0.8); border: 2px solid rgba(102,187,106,0.3);">${answer}</button>`
                     ).join('')}
                 </div>
             `;
