@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Überraschung für Michael!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #90caf9);
+            color: #1565c0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid #64b5f6;
+        }
+        
+        .welcome-section {
+            display: block;
+        }
+        
+        .quiz-section {
+            display: none;
+        }
+        
+        .reveal-section {
+            display: none;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #42a5f5, #1976d2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #1976d2;
+        }
+        
+        .birthday-text {
+            font-size: 1.8rem;
+            margin: 2rem 0;
+            line-height: 1.5;
+        }
+        
+        .surprise-prompt {
+            font-size: 1.5rem;
+            margin: 2rem 0;
+            font-weight: bold;
+            color: #42a5f5;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #64b5f6, #42a5f5);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(66,165,245,0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(66,165,245,0.4);
+        }
+        
+        .question-container {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(100,181,246,0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(66,165,245,0.3);
+        }
+        
+        .question {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            font-weight: bold;
+            color: #1976d2;
+        }
+        
+        .answers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .answer-btn {
+            background: rgba(255,255,255,0.8);
+            color: #1565c0;
+            border: 2px solid rgba(66,165,245,0.3);
+            padding: 15px 20px;
+            font-size: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+        
+        .answer-btn:hover {
+            background: rgba(100,181,246,0.2);
+            border-color: #64b5f6;
+        }
+        
+        .answer-btn.correct {
+            background: rgba(144,238,144,0.8);
+            border-color: #90ee90;
+            color: #2d5a2d;
+            animation: correctAnswer 1s ease-in-out;
+        }
+        
+        @keyframes correctAnswer {
+            0% { 
+                transform: scale(1) rotate(0deg);
+                box-shadow: 0 0 0 rgba(144,238,144,0.5);
+            }
+            50% { 
+                transform: scale(1.1) rotate(180deg);
+                box-shadow: 0 0 30px rgba(144,238,144,0.8);
+                background: rgba(144,238,144,0.9);
+            }
+            100% { 
+                transform: scale(1) rotate(360deg);
+                box-shadow: 0 0 0 rgba(144,238,144,0.5);
+            }
+        }
+        
+        .answer-btn.wrong {
+            background: rgba(255,182,193,0.8);
+            border-color: #ffb6c1;
+            color: #8b4458;
+        }
+        
+        .progress {
+            margin: 2rem 0;
+            font-size: 1.2rem;
+            color: #1976d2;
+        }
+        
+        .reveal-content {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            margin: 2rem 0;
+        }
+        
+        .baby-announcement {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 2rem 0;
+            background: linear-gradient(45deg, #42a5f5, #1976d2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .baby-icons {
+            display: inline-flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .baby-face {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 3px solid #42a5f5;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(66,165,245,0.3);
+            animation: bounce 2s infinite;
+            cursor: default;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        .baby-details {
+            background: rgba(255,255,255,0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 2px solid #64b5f6;
+        }
+        
+        .reveal-steps {
+            margin: 2rem 0;
+        }
+        
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+            margin: 1rem 0;
+            font-size: 1.3rem;
+        }
+        
+        .reveal-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .mystery-card {
+            background: rgba(255,255,255,0.9);
+            border: 3px solid #64b5f6;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            text-align: center;
+        }
+        
+        .mystery-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(100,181,246,0.3);
+        }
+        
+        .question-mark {
+            font-size: 8rem;
+            color: #42a5f5;
+            transition: all 1s ease;
+        }
+        
+        .question-mark.flip {
+            transform: rotateY(180deg);
+            opacity: 0;
+        }
+        
+        .ultrasound-image {
+            max-width: 300px;
+            border-radius: 15px;
+            opacity: 0;
+            transition: all 1s ease;
+            cursor: pointer;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        .ultrasound-image.show {
+            opacity: 1;
+        }
+        
+        .ultrasound-image.enlarged {
+            max-width: 500px;
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+        
+        .ultrasound-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(93,78,117,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+        }
+        
+        .ultrasound-modal img {
+            max-width: 80vw;
+            max-height: 80vh;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(100,181,246,0.3);
+        }
+        
+        .final-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+        
+        .final-reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        
+        
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 0.5rem;
+                padding: 1.5rem;
+                max-width: 95vw;
+            }
+            
+            h1 { 
+                font-size: 2.2rem; 
+                margin-bottom: 1.5rem;
+            }
+            
+            h2 { 
+                font-size: 1.6rem; 
+                margin-bottom: 1.5rem;
+            }
+            
+            .birthday-text { 
+                font-size: 1.3rem; 
+                margin: 1.5rem 0;
+            }
+            
+            .surprise-prompt {
+                font-size: 1.3rem;
+                margin: 1.5rem 0;
+            }
+            
+            .answers { 
+                grid-template-columns: 1fr; 
+                gap: 0.8rem;
+            }
+            
+            .answer-btn {
+                padding: 12px 16px;
+                font-size: 0.95rem;
+            }
+            
+            .question {
+                font-size: 1.2rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .question-container {
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+            }
+            
+            .mystery-card {
+                padding: 2rem;
+                margin: 1.5rem 0;
+            }
+            
+            .question-mark {
+                font-size: 5rem;
+            }
+            
+            .baby-announcement {
+                font-size: 1.8rem;
+                margin: 1.5rem 0;
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .baby-face {
+                width: 55px;
+                height: 55px;
+            }
+            
+            .reveal-item {
+                font-size: 1.1rem;
+                margin: 0.8rem 0;
+            }
+            
+            .reveal-content {
+                font-size: 1.2rem;
+                margin: 1.5rem 0;
+            }
+            
+            .ultrasound-image {
+                max-width: 250px;
+            }
+            
+            button {
+                padding: 12px 30px;
+                font-size: 1.1rem;
+            }
+            
+            .progress {
+                font-size: 1.1rem;
+                margin: 1.5rem 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                margin: 0.25rem;
+                padding: 1rem;
+            }
+            
+            h1 { 
+                font-size: 1.8rem; 
+            }
+            
+            .birthday-text { 
+                font-size: 1.1rem; 
+            }
+            
+            .surprise-prompt {
+                font-size: 1.1rem;
+            }
+            
+            .question {
+                font-size: 1.1rem;
+            }
+            
+            .answer-btn {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .question-mark {
+                font-size: 4rem;
+            }
+            
+            .baby-announcement {
+                font-size: 1.5rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .baby-face {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .mystery-card {
+                padding: 1.5rem;
+            }
+            
+            .ultrasound-image {
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Section -->
+        <div class="welcome-section" id="welcome">
+            <h1>🎉 Hallo Michael! 🎉</h1>
+            <div class="birthday-text">
+                Lieber Michael,<br>
+                wir haben eine ganz besondere Überraschung für dich!
+            </div>
+            <div class="surprise-prompt">
+                Bist du bereit für eine tolle Überraschung? ✨
+            </div>
+            <button onclick="startQuiz()">Ja, ich bin bereit! 🎁</button>
+        </div>
+        
+        <!-- Quiz Section -->
+        <div class="quiz-section" id="quiz">
+            <h2>🎯 Überraschungs-Quiz</h2>
+            <div class="progress" id="progress">Frage 1 von 4</div>
+            <div class="question-container" id="question-container">
+                <!-- Questions will be inserted here -->
+            </div>
+        </div>
+        
+        <!-- Reveal Section -->
+        <div class="reveal-section" id="reveal">
+            <h1>🎊 Die große Enthüllung! 🎊</h1>
+            <div class="reveal-content">
+                Die Antworten, die du ausgewählt hast, beschreiben etwas ganz Besonderes...
+            </div>
+            
+            <div class="reveal-steps" id="reveal-steps">
+                <div class="reveal-item" id="reveal-1">
+                    <strong>Größe:</strong> 4,5 cm
+                </div>
+                <div class="reveal-item" id="reveal-2">
+                    <strong>Woche:</strong> 12
+                </div>
+                <div class="reveal-item" id="reveal-3">
+                    <strong>Tag:</strong> 24
+                </div>
+                <div class="reveal-item" id="reveal-4">
+                    <strong>Monat:</strong> Februar
+                </div>
+            </div>
+            
+            <div class="mystery-card" id="mystery-card" onclick="revealUltrasound()" style="display: none;">
+                <div class="question-mark" id="question-mark">❓</div>
+                <div id="final-content" style="display: none;">
+                    <img class="ultrasound-image" id="ultrasound" src="ultrasound.jpg" alt="Unser Baby!" onclick="enlargeImage(event)">
+                    <div class="baby-announcement" style="margin-top: 2rem;">
+                        <span>WIR BEKOMMEN EIN BABY!</span>
+                        <div class="baby-icons">
+                            <span>💕</span>
+                            <img class="baby-face" src="child1.png" alt="Kind 1">
+                            <img class="baby-face" src="cat.jpg" alt="Lustige Katze" style="border-color: #64b5f6;">
+                            <img class="baby-face" src="child2.png" alt="Kind 2">
+                            <span>💕</span>
+                        </div>
+                    </div>
+                    
+                    
+                    <div style="margin-top: 2rem; font-size: 1.3rem;">
+                        Herzlichen Glückwunsch, Onkel Michael! 🥳
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal für vergrößertes Bild -->
+            <div class="ultrasound-modal" id="ultrasound-modal" onclick="closeModal()">
+                <img id="modal-image" src="ultrasound.jpg" alt="Unser Baby!">
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const questions = [
+            {
+                question: "Welchen Durchmesser hat ein Tischtennisball?",
+                answers: [
+                    "A: 10 mm",
+                    "B: 4,5 cm",
+                    "C: 15 cm", 
+                    "D: 0,5 m"
+                ],
+                correct: 1
+            },
+            {
+                question: "Wie viele Wochen hat ein Quartal im Jahr?",
+                answers: [
+                    "A: 4 Wochen",
+                    "B: 8 Wochen",
+                    "C: 12 Wochen",
+                    "D: 16 Wochen"
+                ],
+                correct: 2
+            },
+            {
+                question: "An welchem Tag ist jedes Jahr Weihnachten?",
+                answers: [
+                    "A: Am 24.",
+                    "B: Am 28.",
+                    "C: Am 30.",
+                    "D: Am 31."
+                ],
+                correct: 0
+            },
+            {
+                question: "In welchem Monat feiert man Valentinstag?",
+                answers: [
+                    "A: November",
+                    "B: Dezember",
+                    "C: Januar",
+                    "D: Februar",
+                   
+                ],
+                correct: 3
+            }
+        ];
+        
+        let currentQuestion = 0;
+        let correctAnswers = 0;
+        
+        function startQuiz() {
+            document.getElementById('welcome').style.display = 'none';
+            document.getElementById('quiz').style.display = 'block';
+            showQuestion();
+        }
+        
+        function showQuestion() {
+            const question = questions[currentQuestion];
+            const container = document.getElementById('question-container');
+            
+            container.innerHTML = `
+                <div class="question">${question.question}</div>
+                <div class="answers">
+                    ${question.answers.map((answer, index) => 
+                        `<button class="answer-btn" onclick="selectAnswer(${index})">${answer}</button>`
+                    ).join('')}
+                </div>
+            `;
+            
+            document.getElementById('progress').textContent = `Frage ${currentQuestion + 1} von ${questions.length}`;
+        }
+        
+        function selectAnswer(selectedIndex) {
+            const question = questions[currentQuestion];
+            const answerButtons = document.querySelectorAll('.answer-btn');
+            
+            if (selectedIndex === question.correct) {
+                // Richtige Antwort - markiere grün mit Animation und deaktiviere alle
+                answerButtons.forEach((btn, index) => {
+                    if (index === question.correct) {
+                        btn.classList.add('correct');
+                    }
+                    btn.disabled = true;
+                });
+                
+                correctAnswers++;
+                
+                // Warte auf Ende der Animation (1s), dann zur nächsten Frage
+                setTimeout(() => {
+                    if (currentQuestion < questions.length - 1) {
+                        currentQuestion++;
+                        showQuestion();
+                    } else {
+                        showReveal();
+                    }
+                }, 1200);
+            } else {
+                // Falsche Antwort - markiere nur diese rot, aber lass andere anklickbar
+                answerButtons[selectedIndex].classList.add('wrong');
+                answerButtons[selectedIndex].disabled = true;
+            }
+        }
+        
+        
+        function showReveal() {
+            document.getElementById('quiz').style.display = 'none';
+            document.getElementById('reveal').style.display = 'block';
+            startRevealSequence();
+        }
+        
+        function startRevealSequence() {
+            // Zeige Details nacheinander mit Verzögerung
+            setTimeout(() => {
+                document.getElementById('reveal-1').classList.add('show');
+            }, 1000);
+            
+            setTimeout(() => {
+                document.getElementById('reveal-2').classList.add('show');
+            }, 2000);
+            
+            setTimeout(() => {
+                document.getElementById('reveal-3').classList.add('show');
+            }, 3000);
+            
+            setTimeout(() => {
+                document.getElementById('reveal-4').classList.add('show');
+            }, 4000);
+            
+            // Zeige Mystery Card nach allen Details
+            setTimeout(() => {
+                document.getElementById('mystery-card').style.display = 'block';
+                document.getElementById('mystery-card').style.opacity = '0';
+                document.getElementById('mystery-card').style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    document.getElementById('mystery-card').style.opacity = '1';
+                    document.getElementById('mystery-card').style.transform = 'scale(1)';
+                }, 100);
+            }, 5500);
+        }
+        
+        function revealUltrasound() {
+            const questionMark = document.getElementById('question-mark');
+            const finalContent = document.getElementById('final-content');
+            const mysteryCard = document.getElementById('mystery-card');
+            const revealSteps = document.getElementById('reveal-steps');
+            
+            // Verstecke die 4 Fakten mit Animation
+            revealSteps.style.opacity = '0';
+            revealSteps.style.transform = 'translateY(-20px)';
+            revealSteps.style.transition = 'all 0.5s ease';
+            
+            // Drehe Fragezeichen um und verstecke es
+            questionMark.classList.add('flip');
+            
+            setTimeout(() => {
+                questionMark.style.display = 'none';
+                revealSteps.style.display = 'none'; // Verstecke die Fakten komplett
+                finalContent.style.display = 'block';
+                finalContent.style.opacity = '0';
+                setTimeout(() => {
+                    finalContent.style.opacity = '1';
+                    finalContent.style.transition = 'opacity 1s ease';
+                    document.getElementById('ultrasound').classList.add('show');
+                }, 100);
+            }, 500);
+            
+            mysteryCard.onclick = null; // Entferne onclick vom Mystery Card
+        }
+        
+        function enlargeImage(event) {
+            event.stopPropagation(); // Verhindere, dass das Mystery Card onClick ausgelöst wird
+            document.getElementById('ultrasound-modal').style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('ultrasound-modal').style.display = 'none';
+        }
+        
+    </script>
+</body>
+</html>
